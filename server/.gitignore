@@ -1,0 +1,6 @@
+*.class
+*.log
+hello-world/.idea
+hello-world/project/target
+hello-world/target
+target

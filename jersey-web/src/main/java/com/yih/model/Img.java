@@ -17,6 +17,8 @@ public class Img {
 
     private Integer star;
 
+    private String url;
+
     public Img() {
     }
 
@@ -55,5 +57,13 @@ public class Img {
 
     public void setStar(Integer star) {
         this.star = star;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

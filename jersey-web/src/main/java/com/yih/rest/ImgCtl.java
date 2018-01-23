@@ -1,6 +1,7 @@
 package com.yih.rest;
 
 import com.yih.model.Img;
+import com.yih.model.User;
 import com.yih.service.ImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,5 +26,13 @@ public class ImgCtl {
     @Path("/imgs")
     public List<Img> imgs(@QueryParam("page") int page) {
         return messageService.getImgs(page);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/users")
+    public List<User> user() {
+        List<User> ddd = messageService.getUsers();
+        return ddd;
     }
 }

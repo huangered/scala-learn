@@ -5,16 +5,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 
 @Entity
-public class Img {
+public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
-    private String msg;
-
-    private Integer star;
 
     private String url;
 
@@ -23,28 +19,7 @@ public class Img {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Img() {
-    }
-
-    public Img(String name, String msg) {
-        this.name = name;
-        this.msg = msg;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public Topic() {
     }
 
     public Long getId() {
@@ -55,12 +30,12 @@ public class Img {
         this.id = id;
     }
 
-    public Integer getStar() {
-        return star;
+    public String getName() {
+        return name;
     }
 
-    public void setStar(Integer star) {
-        this.star = star;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUrl() {

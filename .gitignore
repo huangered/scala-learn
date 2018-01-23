@@ -1,3 +1,5 @@
 server/hello-world/.idea
 server/core/.idea
 server/.idea
+jersey-web/out
+gradle-wrapper.jar

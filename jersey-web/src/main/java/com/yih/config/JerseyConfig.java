@@ -1,6 +1,5 @@
 package com.yih.config;
 
-import com.yih.filter.JwtFilter;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;

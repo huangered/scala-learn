@@ -20,7 +20,7 @@ public class ImgCtl {
     @Autowired
     private ImgService service;
 
-@JwtTokenNeeded
+    @JwtTokenNeeded
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/imgs")

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface ImgRepo extends PagingAndSortingRepository<Img, Long> {
-    @Query(value = "SELECT p FROM Img p inner JOIN p.user")
+    @Query(value = "SELECT p FROM Img p left JOIN p.user")
     Page<Img> findAll(Pageable pageable);
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "UserInfo", indexes = @Index(name = "user_name_idx", columnList = "name", unique = true))
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

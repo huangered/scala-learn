@@ -3,7 +3,7 @@ package com.yih.model;
 import javax.persistence.*;
 
 @Entity
-public class Joke {
+public class Joke extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

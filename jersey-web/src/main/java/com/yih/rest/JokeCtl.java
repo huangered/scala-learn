@@ -11,7 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/jokes")
+@Path("/api/v1/jokes")
 @Component
 public class JokeCtl {
 

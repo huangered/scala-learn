@@ -1,11 +1,9 @@
 package com.yih.filter;
 
+import com.yih.filter.secret.SecretKeyGenerator;
 import io.jsonwebtoken.Jwts;
-import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.annotation.Priority;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
@@ -21,13 +19,6 @@ import java.util.logging.Logger;
 public class JwtFilter implements ContainerRequestFilter {
     private static Logger logger = Logger.getLogger(JwtFilter.class.getName());
 
-    public SecretKey generalKey() {
-        String stringKey = "ddd";
-        byte[] encodedKey = Base64.decodeBase64(stringKey);
-        SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
-        return key;
-    }
-
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
@@ -38,10 +29,8 @@ public class JwtFilter implements ContainerRequestFilter {
         String token = authorizationHeader.substring("Bearer".length()).trim();
 
         try {
-            SecretKey key = generalKey();
-            System.out.println(key.toString());
             // Validate the token
-            Jwts.parser().setSigningKey(generalKey()).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(SecretKeyGenerator.key()).parseClaimsJws(token);
             logger.info("#### valid token : " + token);
 
         } catch (Exception e) {

@@ -1,15 +1,14 @@
 package com.yih.rest;
 
+import com.yih.filter.secret.SecretKeyGenerator;
 import com.yih.model.User;
 import com.yih.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -44,6 +43,14 @@ public class UserCtl {
     }
 
     @POST
+    @Path("/register")
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public Response register(@FormParam("username") String username,
+                             @FormParam("password") String password) {
+        return Response.ok().build();
+    }
+
+    @POST
     @Path("/login")
     @Consumes(APPLICATION_FORM_URLENCODED)
     public Response authenticateUser(@FormParam("login") String login,
@@ -66,8 +73,7 @@ public class UserCtl {
 
     private String issueToken(String login) {
 
-        SecretKey key = generalKey();
-        System.out.println(key.toString());
+        SecretKey key = SecretKeyGenerator.key();
 
         String jwtToken = Jwts.builder()
                 .setSubject(login)
@@ -79,10 +85,4 @@ public class UserCtl {
         return jwtToken;
     }
 
-    public SecretKey generalKey() {
-        String stringKey = "ddd";
-        byte[] encodedKey = Base64.decodeBase64(stringKey);
-        SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
-        return key;
-    }
 }

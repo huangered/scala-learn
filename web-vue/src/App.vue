@@ -15,12 +15,18 @@
         </v-tabs-item>
       </v-tabs-bar>
     </v-tabs>
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <h1>Hello world</h1>
-          <router-view></router-view>
-        </v-layout>
+    <v-content >
+      <v-container grid-list-md text-xs-center>
+        <section>
+          <v-layout column justify-center align-center>
+            <h1>Hello world</h1>
+          </v-layout>
+        </section>
+        <section>
+          <v-layout justify-center align-center >
+            <router-view></router-view>
+          </v-layout>
+        </section>
       </v-container>
     </v-content>
     <v-footer color="indigo" app>

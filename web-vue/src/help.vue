@@ -4,15 +4,14 @@
     <p>{{ msg }}</p>
   </div>
 </template>
-
 <script>
 export default {
   name: 'help',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Help page!!!'
     }
   }
 }
-</script>
 
+</script>

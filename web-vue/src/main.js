@@ -1,12 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuetify from 'vuetify'
 
 import App from './app.vue'
 import Joke from './joke.vue'
 import Img from './img.vue'
 import Help from './help.vue'
 
+
 Vue.use(VueRouter)
+Vue.use(Vuetify)
+
+// require('/Users/peter.huang/Desktop/simple/web-vue/node_modules/vuetify/dist/vuetify.min.css')
+//import '/Users/peter.huang/Desktop/simple/web-vue/node_modules/vuetify/dist/vuetify.min.css'
+
+
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -33,3 +41,4 @@ const app = new Vue({
   el: '#app',
   render: h => h(App)
 })
+

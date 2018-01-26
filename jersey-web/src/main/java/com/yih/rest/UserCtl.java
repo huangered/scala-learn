@@ -1,6 +1,6 @@
 package com.yih.rest;
 
-import com.yih.filter.secret.SecretKeyGenerator;
+import com.yih.filter.request.secret.SecretKeyGenerator;
 import com.yih.model.User;
 import com.yih.service.UserService;
 import io.jsonwebtoken.Jwts;

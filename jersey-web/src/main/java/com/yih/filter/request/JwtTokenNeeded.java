@@ -1,4 +1,4 @@
-package com.yih.filter;
+package com.yih.filter.request;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

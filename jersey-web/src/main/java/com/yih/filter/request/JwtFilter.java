@@ -1,6 +1,6 @@
-package com.yih.filter;
+package com.yih.filter.request;
 
-import com.yih.filter.secret.SecretKeyGenerator;
+import com.yih.filter.request.secret.SecretKeyGenerator;
 import io.jsonwebtoken.Jwts;
 
 import javax.annotation.Priority;

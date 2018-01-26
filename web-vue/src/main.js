@@ -2,10 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 
-import App from './app.vue'
-import Joke from './joke.vue'
-import Img from './img.vue'
-import Help from './help.vue'
+import App from './App.vue'
+import Joke from './Joke.vue'
+import Img from './Img.vue'
+import Help from './Help.vue'
 
 
 Vue.use(VueRouter)

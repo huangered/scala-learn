@@ -1,4 +1,4 @@
-package com.yih.filter.secret;
+package com.yih.filter.request.secret;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 

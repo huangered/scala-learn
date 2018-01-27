@@ -1,0 +1,3 @@
+sbt package
+ls
+exit

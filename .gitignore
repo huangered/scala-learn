@@ -3,3 +3,7 @@ server/core/.idea
 server/.idea
 jersey-web/out
 gradle-wrapper.jar
+jersey-web/db/out
+jersey-web/filter/out
+jersey-web/model/out
+jersey-web/web/out

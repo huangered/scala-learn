@@ -16,13 +16,13 @@ public class WebUser extends BaseEntity {
     @Column
     private String password;
 
-    public WebUser(){
+    public WebUser() {
         super();
     }
 
     public WebUser(String username, String password) {
         super();
-        this.username=username;
+        this.username = username;
         this.password = password;
     }
 

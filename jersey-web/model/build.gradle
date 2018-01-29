@@ -1,10 +1,10 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.9.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
 }
 plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
@@ -17,22 +17,18 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 dependencyManagement {
-	imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-jersey')
-	compile('org.jadira.usertype:usertype.core:5.0.0.GA')
-	compile('org.jadira.usertype:usertype.extended:5.0.0.GA')
-	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.jadira.usertype:usertype.core:5.0.0.GA')
+    compile('org.jadira.usertype:usertype.extended:5.0.0.GA')
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
-	runtime('org.postgresql:postgresql')
-	compile 'io.jsonwebtoken:jjwt:0.9.0'
-
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }

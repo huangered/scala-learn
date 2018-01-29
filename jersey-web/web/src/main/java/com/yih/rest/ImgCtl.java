@@ -1,5 +1,6 @@
 package com.yih.rest;
 
+import com.yih.filter.annotation.Record;
 import com.yih.model.Img;
 import com.yih.service.ImgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ImgCtl {
     @Autowired
     private ImgService service;
 
-    //@JwtTokenNeeded
+    @Record
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/imgs")

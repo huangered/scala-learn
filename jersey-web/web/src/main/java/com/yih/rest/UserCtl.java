@@ -69,7 +69,7 @@ public class UserCtl {
         try {
 
             // Authenticate the user using the credentials provided
-             authenticate(username, password);
+            authenticate(username, password);
 
             // Issue a token for the user
             String token = issueToken(username);

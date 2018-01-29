@@ -1,5 +1,6 @@
 package com.yih.filter.request;
 
+import com.yih.filter.annotation.JwtTokenNeeded;
 import com.yih.filter.secret.SecretKeyGenerator;
 import io.jsonwebtoken.Jwts;
 

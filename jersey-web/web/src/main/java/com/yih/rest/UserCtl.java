@@ -1,7 +1,9 @@
 package com.yih.rest;
 
+import com.yih.db.WebUserRepo;
 import com.yih.filter.secret.SecretKeyGenerator;
 import com.yih.model.User;
+import com.yih.model.user.WebUser;
 import com.yih.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class UserCtl {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private WebUserRepo webUserRepo;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -47,27 +53,38 @@ public class UserCtl {
     @Consumes(APPLICATION_FORM_URLENCODED)
     public Response register(@FormParam("username") String username,
                              @FormParam("password") String password) {
+        ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+        WebUser webUser = new WebUser(username, password);
+        webUser.setCreatedDate(now);
+        webUser.setModifiedDate(now);
+        webUserRepo.save(webUser);
         return Response.ok().build();
     }
 
     @POST
     @Path("/login")
     @Consumes(APPLICATION_FORM_URLENCODED)
-    public Response authenticateUser(@FormParam("login") String login,
+    public Response authenticateUser(@FormParam("username") String username,
                                      @FormParam("password") String password) {
         try {
 
             // Authenticate the user using the credentials provided
-            // authenticate(login, password);
+             authenticate(username, password);
 
             // Issue a token for the user
-            String token = issueToken(login);
+            String token = issueToken(username);
 
             // Return the token on the response
             return Response.ok().header(AUTHORIZATION, "Bearer " + token).entity("ok").build();
 
         } catch (Exception e) {
             return Response.status(UNAUTHORIZED).build();
+        }
+    }
+
+    private void authenticate(String user, String password) {
+        if (webUserRepo.findByUsernameAndPassword(user, password).size() < 0) {
+            throw new RuntimeException("not user");
         }
     }
 

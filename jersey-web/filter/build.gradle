@@ -8,8 +8,6 @@ buildscript {
 }
 plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
 
-apply plugin: 'java'
-apply plugin: 'idea'
 
 group = 'com.yih.filter'
 version = '0.0.1-SNAPSHOT'

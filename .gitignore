@@ -7,3 +7,6 @@ jersey-web/db/out
 jersey-web/filter/out
 jersey-web/model/out
 jersey-web/web/out
+scala/.idea
+scala/target
+scala/project

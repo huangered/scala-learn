@@ -11,7 +11,6 @@ class AcceptorActor(instanceId: Int) extends Actor {
   var acceptValue: AnyRef = null;
 
   def receive = {
-
     case (Prepare, proposeId: Int) => {
       log.info("Receive prepare {} ", proposeId)
       if (maxProposeId == 0) {

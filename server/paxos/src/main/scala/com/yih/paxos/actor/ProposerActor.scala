@@ -5,7 +5,7 @@ import akka.event.Logging
 import com.yih.paxos.Code._
 import com.yih.paxos.Instance
 
-class ProposerActor(instance: Instance, acceptors: List[ActorRef], learners:List[ActorRef]) extends Actor {
+class ProposerActor(instance: Instance, acceptors: List[ActorRef], learners: List[ActorRef]) extends Actor {
   val log = Logging(context.system, this)
 
   var pRespNum = 0

@@ -12,12 +12,9 @@ scalaVersion := "2.12.3"
 
 // It's possible to define many kinds of settings, such as:
 
-name := "paxos"
-organization := "com.yih.paxos"
+name := "raft"
+organization := "com.yih.raft"
 version := "1.0"
-description := "paxos"
+description := "raft"
 
-libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.5.9"
-
-
-publishTo := Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/.m2/repository")))
+publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))

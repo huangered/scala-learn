@@ -1,8 +1,4 @@
-import java.net.InetSocketAddress
-
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import akka.io.{IO, Tcp}
-import akka.util.ByteString
+import akka.actor.{ActorSystem, Props}
 import com.yih.paxos.Code._
 import com.yih.paxos._
 import com.yih.paxos.actor.{AcceptorActor, LearnerActor, ProposerActor}
@@ -18,9 +14,9 @@ object Main extends App {
 
   val l = List(a0, a1, a2)
 
-val le0 = system.actorOf(Props(classOf[LearnerActor]), "learner-0")
-val le1 = system.actorOf(Props(classOf[LearnerActor]), "learner-1")
-val le2 = system.actorOf(Props(classOf[LearnerActor]), "learner-2")
+  val le0 = system.actorOf(Props(classOf[LearnerActor]), "learner-0")
+  val le1 = system.actorOf(Props(classOf[LearnerActor]), "learner-1")
+  val le2 = system.actorOf(Props(classOf[LearnerActor]), "learner-2")
 
   val le = List(le0, le1, le2)
 

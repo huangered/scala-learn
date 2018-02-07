@@ -1,6 +1,7 @@
 package com.yih.config;
 
 import com.yih.filter.request.RecordFilter;
+import com.yih.filter.request.RouteFilter;
 import com.yih.filter.response.CorsResponseFilter;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -15,5 +16,6 @@ public class JerseyConfig extends ResourceConfig {
         packages("com.yih");
         register(LoggingFilter.class);
         register(CorsResponseFilter.class);
+        //register(RouteFilter.class);
     }
 }

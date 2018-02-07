@@ -9,8 +9,8 @@ class LearnerActor extends Actor {
 
   def receive = {
 
-    case (Store, value: AnyRef) => {
-      log.info("Receive store {} ", value)
+    case (Store, id:Int, value: AnyRef) => {
+      log.info("Receive store {} {} ", id, value)
     }
     case _ => log.info("received unknown message")
   }

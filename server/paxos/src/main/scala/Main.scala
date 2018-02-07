@@ -8,9 +8,9 @@ object Main extends App {
   val system = ActorSystem("test")
   val server = system.actorOf(Props[SimpleServer], "server")
 
-  val a0 = system.actorOf(Props(classOf[AcceptorActor], 0), "acceptor-0");
-  val a1 = system.actorOf(Props(classOf[AcceptorActor], 0), "acceptor-1");
-  val a2 = system.actorOf(Props(classOf[AcceptorActor], 0), "acceptor-2");
+  val a0 = system.actorOf(Props(classOf[AcceptorActor]), "acceptor-0");
+  val a1 = system.actorOf(Props(classOf[AcceptorActor]), "acceptor-1");
+  val a2 = system.actorOf(Props(classOf[AcceptorActor]), "acceptor-2");
 
   val l = List(a0, a1, a2)
 
@@ -20,7 +20,7 @@ object Main extends App {
 
   val le = List(le0, le1, le2)
 
-  var p0 = system.actorOf(Props(classOf[ProposerActor], new Instance(0, "abcdefg"), l, le), "proposer-0")
+  var p0 = system.actorOf(Props(classOf[ProposerActor], l, le), "proposer-0")
 
-  p0 ! (Prepare, 3)
+  p0 ! (Prepare, 3, "ddddd")
 }

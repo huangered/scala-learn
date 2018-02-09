@@ -7,8 +7,8 @@ import akka.actor.{Actor, ActorRef, Props}
 import akka.event.Logging
 import akka.io.{IO, Tcp}
 import akka.util.ByteString
-import com.yih.paxos.Convertor
 import com.yih.paxos.network.Receive
+import com.yih.paxos.tool.Convertor
 
 object Client {
   def props(remote: InetSocketAddress, replies: ActorRef) =

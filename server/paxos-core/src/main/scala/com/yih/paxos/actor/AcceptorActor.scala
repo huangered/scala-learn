@@ -2,8 +2,9 @@ package com.yih.paxos.actor
 
 import akka.actor.Actor
 import akka.event.Logging
-import com.yih.paxos.model.AcceptMeta
-import com.yih.paxos.{Helper, _}
+import com.yih.paxos.model._
+import com.yih.paxos._
+import com.yih.paxos.tool.Helper
 
 import scala.collection.mutable.Map
 

@@ -5,6 +5,8 @@ import java.net.InetSocketAddress
 import akka.actor.{Actor, Props}
 import akka.event.Logging
 import com.yih.paxos.actor.ProposerActor
+import com.yih.paxos.handler.ConnectHandler
+import com.yih.paxos.model.{Packet, Register1}
 import com.yih.paxos.network.Send
 import com.yih.paxos.network.client.{Client, ListenerActor}
 
@@ -34,13 +36,13 @@ class RootActor(addresses: List[(String, Int)]) extends Actor {
 
   }
 
-  class ProposeHandler extends Handler {
+  class ProposeHandler extends ConnectHandler {
     override def send(packet: Packet): Unit = {
       listenerActors.foreach(a => a ! Send(packet))
     }
   }
 
-  class LearnHandler extends Handler {
+  class LearnHandler extends ConnectHandler {
     override def send(packet: Packet): Unit = {
       listenerActors.foreach(a => a ! Send(packet))
     }

@@ -1,5 +1,4 @@
-package com.yih.paxos
-
+package com.yih.paxos.tool
 
 import com.yih.paxos.model.{AcceptMeta, ProposeMeta}
 

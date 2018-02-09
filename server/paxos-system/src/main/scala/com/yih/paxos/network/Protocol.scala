@@ -1,6 +1,6 @@
 package com.yih.paxos.network
 
-import com.yih.paxos.Packet
+import com.yih.paxos.model.Packet
 
 case class Send(packet: Packet)
 

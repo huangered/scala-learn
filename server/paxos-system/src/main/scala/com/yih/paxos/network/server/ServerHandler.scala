@@ -6,7 +6,8 @@ import akka.actor.{Actor, ActorRef, Props}
 import akka.event.Logging
 import akka.util.ByteString
 import com.yih.paxos.actor.{AcceptorActor, LearnerActor}
-import com.yih.paxos.{Convertor, Packet, Prepare, Accept, Store}
+import com.yih.paxos.model._
+import com.yih.paxos.tool.Convertor
 
 
 class ServerHandler extends Actor {

@@ -1,4 +1,7 @@
-package com.yih.paxos
+package com.yih.paxos.tool
+
+import com.yih.paxos._
+import com.yih.paxos.model._
 
 object Convertor {
   def unpack(data: String): Packet = {

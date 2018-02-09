@@ -6,8 +6,9 @@ import akka.actor.{Actor, ActorRef}
 import akka.event.Logging
 import akka.io.Tcp.{Connected, Write}
 import akka.util.ByteString
+import com.yih.paxos.model.Packet
 import com.yih.paxos.network.{Receive, Send}
-import com.yih.paxos.{Convertor, Packet}
+import com.yih.paxos.tool.Convertor
 
 class ListenerActor(proposer1: ActorRef) extends Actor {
   val log = Logging(context.system, this)

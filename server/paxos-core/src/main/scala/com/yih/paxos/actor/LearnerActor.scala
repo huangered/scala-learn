@@ -3,6 +3,7 @@ package com.yih.paxos.actor
 import akka.actor.Actor
 import akka.event.Logging
 import com.yih.paxos._
+import com.yih.paxos.model.Store
 
 class LearnerActor extends Actor {
   val log = Logging(context.system, this)

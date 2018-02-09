@@ -2,13 +2,14 @@ package com.yih.paxos.actor
 
 import akka.actor.Actor
 import akka.event.Logging
-import com.yih.paxos._
-import com.yih.paxos.model.ProposeMeta
+import com.yih.paxos.handler.ConnectHandler
+import com.yih.paxos.model._
+import com.yih.paxos.tool.Helper
 
 import scala.collection.mutable.Map
 
 
-class ProposerActor(size: Int, acceptors: Handler, learners: Handler) extends Actor {
+class ProposerActor(size: Int, acceptors: ConnectHandler, learners: ConnectHandler) extends Actor {
   val log = Logging(context.system, this)
 
   private val meta: Map[Int, ProposeMeta] = Map()
@@ -67,7 +68,7 @@ class ProposerActor(size: Int, acceptors: Handler, learners: Handler) extends Ac
 
   def sendLearner(iid: Int): Unit = {
     if (meta(iid).acceptNum >= Threshold) {
-      log.info("send to learner")
+      log.info("send value to learner")
       learners.send(Store(iid, meta(iid).acceptValue))
     } else {
       log.warning(s"not more than threshold $Threshold, ignore")

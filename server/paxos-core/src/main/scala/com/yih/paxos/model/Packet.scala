@@ -1,6 +1,6 @@
-package com.yih.paxos
+package com.yih.paxos.model
 
-import com.yih.paxos.Role.Role
+import com.yih.paxos.model.Role.Role
 
 object Role extends Enumeration {
   type Role = Value

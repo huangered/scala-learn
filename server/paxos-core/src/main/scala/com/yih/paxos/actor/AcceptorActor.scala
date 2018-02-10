@@ -15,8 +15,8 @@ class AcceptorActor extends Actor {
   var meta: Map[Int, AcceptMeta] = Map()
 
   def receive = {
-    case Echo(iid) => {
-      sender ! Echo(iid)
+    case Echo() => {
+      sender ! Echo()
     }
     case Prepare(iid, proposeId) => {
       log.info("Receive prepare instance {} propose {} ", iid, proposeId)

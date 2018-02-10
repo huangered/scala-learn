@@ -35,4 +35,4 @@ case class Unknown(data: String) extends Packet
 
 case class Msg(role: Role, data: String) extends Packet
 
-case class Echo(iid: Int) extends Packet
+case class Echo() extends Packet

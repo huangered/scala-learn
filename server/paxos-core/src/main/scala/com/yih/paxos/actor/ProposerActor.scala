@@ -50,7 +50,9 @@ class ProposerActor(size: Int, acceptors: ConnectHandler, learners: ConnectHandl
     }
     case Error2(iid) => {
       meta(iid).notAcceptNum += 1
-
+    }
+    case Echo() => {
+      log.info("Proposer received {{ Echo }}")
     }
     case any => {
       log.info(s"\nreceived unknown message \n$any\n============")

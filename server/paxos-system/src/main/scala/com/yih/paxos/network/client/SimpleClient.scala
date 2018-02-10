@@ -10,12 +10,12 @@ import akka.util.ByteString
 import com.yih.paxos.network.Receive
 import com.yih.paxos.tool.Convertor
 
-object Client {
+object SimpleClient {
   def props(remote: InetSocketAddress, replies: ActorRef) =
-    Props(classOf[Client], remote, replies)
+    Props(classOf[SimpleClient], remote, replies)
 }
 
-class Client(remote: InetSocketAddress, listener: ActorRef) extends Actor {
+class SimpleClient(remote: InetSocketAddress, listener: ActorRef) extends Actor {
 
   val log = Logging(context.system, this)
 

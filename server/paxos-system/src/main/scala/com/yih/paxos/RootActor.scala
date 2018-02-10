@@ -6,9 +6,9 @@ import akka.actor.{Actor, Props}
 import akka.event.Logging
 import com.yih.paxos.actor.ProposerActor
 import com.yih.paxos.handler.ConnectHandler
-import com.yih.paxos.model.{Packet, Register1}
+import com.yih.paxos.model.{Echo, Packet, Register1}
 import com.yih.paxos.network.Send
-import com.yih.paxos.network.client.{Client, ListenerActor}
+import com.yih.paxos.network.client.{SimpleClient, ListenerActor}
 
 class RootActor(addresses: List[(String, Int)]) extends Actor {
 
@@ -24,14 +24,14 @@ class RootActor(addresses: List[(String, Int)]) extends Actor {
   val clientActors = addresses.zipWithIndex.map {
     case (element, index) => {
       val listener = listenerActors(index)
-      context.actorOf(Props(classOf[Client], new InetSocketAddress(element._1, element._2), listener), "client-" + element._2)
+      context.actorOf(Props(classOf[SimpleClient], new InetSocketAddress(element._1, element._2), listener), "client-" + element._2)
 
     }
   }
 
   override def receive = {
+    case "echo" => proposerActor ! Echo()
     case "test" => proposerActor ! Register1(123, "test")
-    case "ddd" => log.info("ggg")
     case _ => log.error("Root unknown")
 
   }

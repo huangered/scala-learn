@@ -12,7 +12,7 @@ object Convertor {
     val splitData = data split ","
     val head = splitData(0)
 
-    val iid = splitData(1).toInt
+    lazy val iid = splitData(1).toInt
     head match {
       case "register1" => Register1(iid, splitData(2))
       case "accept" => Accept(iid, splitData(2).toInt, splitData(3))
@@ -23,7 +23,7 @@ object Convertor {
       case "error1" => Error1(iid)
       case "error2" => Error2(iid)
       case "store" => Store(iid, splitData(2))
-      case "echo" => Echo(iid)
+      case "echo" => Echo()
       case _ => Unknown(data)
 
     }
@@ -40,7 +40,7 @@ object Convertor {
       case Error1(iid) => s"error1,$iid"
       case Error2(iid) => s"error2,$iid"
       case Store(iid, value) => s"store,$iid,$value"
-      case Echo(iid) => s"echo"
+      case Echo() => s"echo"
       case _ => "unknown"
     }
   }

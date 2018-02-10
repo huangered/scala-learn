@@ -15,7 +15,7 @@ lazy val commonSettings = Seq(
   publishTo := Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/.m2/repository")))
 )
 
-lazy val root = project in file(".") aggregate(paxos_unique, paxos_core, paxos_system) settings(
+lazy val root = project in file(".") aggregate(paxos_util, paxos_unique, paxos_core, paxos_system) settings(
   commonSettings,
   name := "paxos"
 )
@@ -34,3 +34,9 @@ lazy val paxos_system = project in file("paxos-system") dependsOn paxos_core set
   commonSettings,
   name := "paxos-system"
   )
+
+lazy val paxos_util = project in file("paxos-util") settings (
+  commonSettings,
+  name := "paxos-util"
+)
+

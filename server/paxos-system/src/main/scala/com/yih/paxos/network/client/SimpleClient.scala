@@ -30,7 +30,7 @@ class SimpleClient(remote: InetSocketAddress, listener: ActorRef) extends Actor 
       listener ! "connect failed"
       context stop self
 
-    case c@Connected(remote, local) =>
+    case c @ Connected(remote, local) =>
       log.info(s"client connected $remote, $local")
       listener ! c
       val connection = sender()
@@ -38,7 +38,6 @@ class SimpleClient(remote: InetSocketAddress, listener: ActorRef) extends Actor 
       connection ! Register(self)
       context become {
         case data2: String => {
-          System.out.print(data2)
           connection ! Write(ByteString(data2))
         }
         case data: ByteString =>

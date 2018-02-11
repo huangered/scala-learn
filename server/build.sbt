@@ -30,7 +30,7 @@ lazy val paxos_core = project in file("paxos-core") dependsOn paxos_unique setti
   name := "paxos-core"
   )
 
-lazy val paxos_system = project in file("paxos-system") dependsOn paxos_core settings (
+lazy val paxos_system = project in file("paxos-system") dependsOn (paxos_util, paxos_core) settings (
   commonSettings,
   name := "paxos-system"
   )

@@ -6,15 +6,16 @@ import akka.actor.{Actor, ActorRef}
 import akka.event.Logging
 import akka.io.{IO, Tcp}
 import akka.util.ByteString
+import com.yih.paxos.config.PaxosContext
 
-class SimpleServer(address: String, port: Int, handler: ActorRef) extends Actor {
+class SimpleServer(pContext: PaxosContext, handler: ActorRef) extends Actor {
   val log = Logging(context.system, this)
 
 
   import Tcp._
   import context.system
 
-  IO(Tcp) ! Bind(self, new InetSocketAddress(address, port))
+  IO(Tcp) ! Bind(self, new InetSocketAddress(pContext.ip, pContext.port))
 
   def receive = {
     case b@Bound(localAddress) => context.parent ! b
@@ -22,7 +23,7 @@ class SimpleServer(address: String, port: Int, handler: ActorRef) extends Actor 
     case CommandFailed(_: Bind) => context stop self
 
     case c@Connected(remote, local) =>
-      log.info(s"Receive conn $remote $local")
+      log.info(s"Receive connection $remote $local")
       val connection = sender()
       connection ! Register(handler)
       context become {

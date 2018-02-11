@@ -40,3 +40,7 @@ lazy val paxos_util = project in file("paxos-util") settings (
   name := "paxos-util"
 )
 
+lazy val paxos_storage = (project in file("paxos-storage")) settings(
+  commonSettings,
+  name := "paxos-storage"
+)

@@ -1,4 +1,6 @@
-package com.yih.paxos.service
+package com.yih.paxos.net
+
+import com.yih.paxos.service._
 
 class EchoVerbHandler extends IVerbHandler[Echo] {
   override def doVerb(elem: MessageIn[Echo]): Unit = {

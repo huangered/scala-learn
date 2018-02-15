@@ -11,7 +11,7 @@ class FrameDecoder extends MessageToMessageDecoder[ByteBuf] {
     override def decode(ctx: ChannelHandlerContext, msg: ByteBuf, out: util.List[AnyRef]): Unit = {
 
         var frame = new Frame(null, null, null)
-        frame = frame.codec.decodec(msg)
+        frame = Frame.codec.decodec(msg)
         out.add(frame)
     }
 }
@@ -19,7 +19,7 @@ class FrameDecoder extends MessageToMessageDecoder[ByteBuf] {
 class FrameEncoder extends MessageToMessageEncoder[Frame] {
     override def encode(ctx: ChannelHandlerContext, msg: Frame, out: util.List[AnyRef]): Unit = {
         val buf = Unpooled.buffer()
-        msg.codec.codec(msg, buf)
+        Frame.codec.codec(msg, buf)
         out.add(buf)
     }
 }

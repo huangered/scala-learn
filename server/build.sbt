@@ -32,7 +32,8 @@ lazy val paxos_core = project in file("paxos-core") dependsOn paxos_unique setti
 
 lazy val paxos_system = project in file("paxos-system") dependsOn (paxos_util, paxos_core) settings (
   commonSettings,
-  name := "paxos-system"
+  name := "paxos-system",
+  libraryDependencies += "io.netty" % "netty-all" % "4.1.21.Final"
   )
 
 lazy val paxos_util = project in file("paxos-util") settings (

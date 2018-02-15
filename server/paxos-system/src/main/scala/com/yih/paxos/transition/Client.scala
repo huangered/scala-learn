@@ -23,6 +23,8 @@ class Client(host: String, port: Int) {
         b.handler(new ChannelInitializer[SocketChannel]() {
             @throws[Exception]
             override def initChannel(ch: SocketChannel): Unit = {
+                ch.pipeline.addLast(new FrameEncoder)
+                ch.pipeline.addLast(new FrameDecoder)
                 ch.pipeline.addLast(new ClientHandler)
             }
         })

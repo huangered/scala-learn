@@ -4,19 +4,24 @@ import com.yih.paxos.codec.Icodec
 import io.netty.buffer.ByteBuf
 
 
+
 class Frame(val h: Head, val b: Block, val m: Message) {
     val codec = new Icodec[Frame] {
         override def codec(frame: Frame, buf: ByteBuf): Unit = {
             buf.writeByte(frame.h.version)
             buf.writeLong(frame.b.traceId)
             buf.writeInt(frame.b.len)
-            //)
+            //
         }
 
         override def decodec(buf: ByteBuf): Frame = {
-            null
+            val head = new Head(buf.readByte())
+            val block = new Block(buf.readLong(), buf.readInt())
+            new Frame(head, block, null)
         }
     }
+
+
 }
 
 class Head(val version: Byte) {

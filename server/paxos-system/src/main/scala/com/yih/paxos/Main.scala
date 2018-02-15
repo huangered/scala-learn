@@ -1,7 +1,7 @@
 package com.yih.paxos
 
 import com.yih.paxos.config.PaxosContextFactory
-import com.yih.paxos.transition.{Client, Server}
+import com.yih.paxos.transition._
 import io.netty.buffer.Unpooled
 
 import scala.concurrent.Future
@@ -27,9 +27,9 @@ object Main extends App {
     val client = new Client("localhost", port)
     client.run()
     Thread.sleep(1000)
-    val buf = Unpooled.buffer()
-    buf.writeByte(111)
-    client.f.channel().writeAndFlush(buf)
+
+    val frame = new Frame(new Head(1), new Block(12345, 222), null)
+    client.f.channel().writeAndFlush(frame)
 
     while (true) {
 

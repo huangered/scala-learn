@@ -19,6 +19,8 @@ class Server(endpoints: List[PaxosContext], port: Int) {
                 .childHandler(
                     new ChannelInitializer[SocketChannel]() {
                         override def initChannel(ch: SocketChannel): Unit = {
+                            ch.pipeline.addLast(new FrameEncoder)
+                            ch.pipeline.addLast(new FrameDecoder)
                             ch.pipeline.addLast(new ServerHandler)
                         }
                     }).option(ChannelOption.SO_BACKLOG, Int.box(128))

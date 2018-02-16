@@ -2,9 +2,9 @@ package com.yih.paxos.transition
 
 import com.yih.paxos.codec.Icodec
 import com.yih.paxos.net.Echo
-import com.yih.paxos.service.Verb
 import com.yih.paxos.service.Verb.Verb
-import com.yih.paxos.service.paxos.{Prepare, PrepareResponse, Propose, ProposeResponse}
+import com.yih.paxos.service.paxos._
+import com.yih.paxos.service.{MessageService, Verb}
 import io.netty.buffer.ByteBuf
 
 object Frame {
@@ -14,32 +14,21 @@ object Frame {
             buf.writeLong(frame.b.traceId)
             buf.writeInt(frame.b.len)
             buf.writeByte(frame.m.verb.id)
+
             frame.m.verb match {
                 case Verb.Echo => {
                     val echo = frame.m.body.asInstanceOf[Echo]
                     Echo.codec.codec(echo, buf)
                 }
-                case Verb.Prepare => {
-                    val p = frame.m.body.asInstanceOf[Prepare]
-                    Prepare.codec.codec(p, buf)
-                }
-                case Verb.PrepareResponse => {
-                    val pp = frame.m.body.asInstanceOf[PrepareResponse]
-                    PrepareResponse.codec.codec(pp, buf)
-                }
-                case Verb.Propose => {
-                    val pp = frame.m.body.asInstanceOf[Propose]
-                    Propose.codec.codec(pp, buf)
-                }
-                case Verb.ProposeResponse => {
-                    val pp = frame.m.body.asInstanceOf[ProposeResponse]
-                    ProposeResponse.codec.codec(pp, buf)
-                }
-                case _ => {
-                    println("unknown")
-                }
-            }
+                case otherVerb => {
+                    val icodec = MessageService.codecs(otherVerb)
+                    val commitIcodec = icodec.asInstanceOf[Icodec[Commit]]
+                    commitIcodec.codec(frame.m.body.asInstanceOf[Commit], buf)
 
+                }
+
+
+            }
         }
 
         override def decodec(buf: ByteBuf): Frame = {
@@ -51,6 +40,9 @@ object Frame {
                 case Verb.Echo =>
                     val echo = Echo.codec.decodec(buf)
                     new Message(Verb.Echo, echo)
+                case other =>
+                    val icodec = MessageService.codecs(other)
+                    icodec.decodec(buf)
                 case Verb.Prepare =>
                     val prepare = Prepare.codec.decodec(buf)
                     new Message(Verb.Prepare, prepare)

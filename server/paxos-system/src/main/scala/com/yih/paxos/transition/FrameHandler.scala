@@ -10,8 +10,7 @@ import io.netty.handler.codec.{MessageToMessageDecoder, MessageToMessageEncoder}
 class FrameDecoder extends MessageToMessageDecoder[ByteBuf] {
     override def decode(ctx: ChannelHandlerContext, msg: ByteBuf, out: util.List[AnyRef]): Unit = {
 
-        var frame = new Frame(null, null, null)
-        frame = Frame.codec.decodec(msg)
+        val frame = Frame.codec.decodec(msg)
         out.add(frame)
     }
 }

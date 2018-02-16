@@ -9,7 +9,3 @@ trait IVerbHandler[T] {
 class CommitVerbHandler extends IVerbHandler[Commit] {
     override def doVerb(elem: MessageIn[Commit]): Unit = {}
 }
-
-class ProposeVerbHandler extends IVerbHandler[Commit] {
-    override def doVerb(elem: MessageIn[Commit]): Unit = {}
-}

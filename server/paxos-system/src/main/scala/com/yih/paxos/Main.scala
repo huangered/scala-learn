@@ -15,11 +15,12 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Main extends App {
 
+
     val c1 = PaxosContextFactory.loadConfig("application_0.conf")
     val c2 = PaxosContextFactory.loadConfig("application_1.conf")
     val c3 = PaxosContextFactory.loadConfig("application_2.conf")
 
-    val port = 12345
+    val port = 12346
     val server = new Server(List(), port)
     Future {
         server.run()
@@ -32,10 +33,13 @@ object Main extends App {
     //    val frame = new Frame(new Head(1), new Block(12345, 222), new Message(Verb.Echo, new Echo(123321, 1)))
     //    client.f.channel().writeAndFlush(frame)
 
-    val iid = 12345
-    MessageService.sendPrepare(new Prepare(iid, 123), client.f.channel())
+    val snowFlake = new SnowFlake(100, 100)
+
+    val iid = snowFlake.nextId
+    MessageService.sendPrepare(new Prepare(iid, 100), client.f.channel())
 
     while (true) {
 
     }
 }
+

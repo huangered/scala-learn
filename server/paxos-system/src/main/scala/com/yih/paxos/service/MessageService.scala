@@ -2,6 +2,7 @@ package com.yih.paxos.service
 
 import com.typesafe.scalalogging.Logger
 import com.yih.paxos.SnowFlake
+import com.yih.paxos.codec.Icodec
 import com.yih.paxos.net.{Echo, EchoVerbHandler}
 import com.yih.paxos.service.paxos._
 import com.yih.paxos.transition._
@@ -19,6 +20,14 @@ object MessageService {
         Verb.Commit -> new CommitVerbHandler,
         Verb.Prepare -> new PrepareVerbHandler,
         Verb.Propose -> new ProposeVerbHandler
+    )
+
+    val codecs: Map[Verb.Value, Icodec[_ <: Commit]] = Map(
+        //        Verb.Echo -> Echo.codec,
+        Verb.Prepare -> Prepare.codec,
+        Verb.PrepareResponse -> PrepareResponse.codec,
+        Verb.Propose -> Propose.codec,
+        Verb.ProposeResponse -> ProposeResponse.codec
     )
 
     val callbacks: mutable.Map[Long, IAsycCallback] = mutable.Map()

@@ -40,21 +40,9 @@ object Frame {
                 case Verb.Echo =>
                     val echo = Echo.codec.decodec(buf)
                     new Message(Verb.Echo, echo)
-                case other =>
+                case other: Verb =>
                     val icodec = MessageService.codecs(other)
-                    icodec.decodec(buf)
-                case Verb.Prepare =>
-                    val prepare = Prepare.codec.decodec(buf)
-                    new Message(Verb.Prepare, prepare)
-                case Verb.PrepareResponse =>
-                    val pp = PrepareResponse.codec.decodec(buf)
-                    new Message(Verb.PrepareResponse, pp)
-                case Verb.Propose =>
-                    val p = Propose.codec.decodec(buf)
-                    new Message(Verb.Propose, p)
-                case Verb.ProposeResponse =>
-                    val pr = ProposeResponse.codec.decodec(buf)
-                    new Message(Verb.ProposeResponse, pr)
+                    new Message(other, icodec.decodec(buf))
                 case _ =>
                     println("unknown")
                     new Message(Verb.Unknown, null)
@@ -62,8 +50,6 @@ object Frame {
             new Frame(head, block, message)
         }
     }
-
-
 }
 
 class Frame(val h: Head, val b: Block, val m: Message) {

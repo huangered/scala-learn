@@ -4,17 +4,23 @@ import com.yih.paxos.codec.Icodec
 import com.yih.paxos.service.Verb
 import io.netty.buffer.ByteBuf
 
-class Echo(val timestamp: Long) {
+object Echo {
     val codec = new Icodec[Echo] {
         override def codec(elem: Echo, buf: ByteBuf): Unit = {
             buf.writeByte(Verb.Echo.id)
-            buf.writeLong(timestamp)
+            buf.writeLong(elem.timestamp)
+            buf.writeInt(elem.counter)
         }
 
         override def decodec(buf: ByteBuf): Echo = {
-            buf.readByte()
+            //            buf.readByte()
             val timestamp = buf.readLong()
-            new Echo(timestamp)
+            val counter = buf.readInt()
+            new Echo(timestamp, counter)
         }
     }
+}
+
+class Echo(val timestamp: Long, val counter: Int) {
+
 }

@@ -1,8 +1,9 @@
 package com.yih.paxos
 
 import com.yih.paxos.config.PaxosContextFactory
+import com.yih.paxos.service.MessageService
+import com.yih.paxos.service.paxos.Prepare
 import com.yih.paxos.transition._
-import io.netty.buffer.Unpooled
 
 import scala.concurrent.Future
 import scala.language.{higherKinds, implicitConversions}
@@ -28,8 +29,11 @@ object Main extends App {
     client.run()
     Thread.sleep(1000)
 
-    val frame = new Frame(new Head(1), new Block(12345, 222), null)
-    client.f.channel().writeAndFlush(frame)
+    //    val frame = new Frame(new Head(1), new Block(12345, 222), new Message(Verb.Echo, new Echo(123321, 1)))
+    //    client.f.channel().writeAndFlush(frame)
+
+    val iid = 12345
+    MessageService.sendPrepare(new Prepare(iid, 123), client.f.channel())
 
     while (true) {
 

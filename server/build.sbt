@@ -3,6 +3,8 @@ def json4sVersion = "3.6.0-M2"
 
 lazy val akka_core = "com.typesafe.akka" %% "akka-actor" % "2.5.9"
 lazy val json4sNative =  "org.json4s" %% "json4s-native" % json4sVersion
+lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.3"
+lazy val scala_logging = "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2"
 
 lazy val commonSettings = Seq(
   organization := "com.yih.paxos",
@@ -10,7 +12,9 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.12.4",
   libraryDependencies ++= Seq(
     akka_core,
-    json4sNative
+    json4sNative,
+    logback,
+    scala_logging
   ),
   publishTo := Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/.m2/repository")))
 )

@@ -10,3 +10,5 @@ jersey-web/web/out
 scala/.idea
 scala/target
 scala/project
+jersey-web/filter/request/out
+jersey-web/filter/response/out

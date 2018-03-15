@@ -1,4 +1,6 @@
+rootProject.name = 'jersey-web'
 include 'web'
-include 'filter'
+include 'filter:request'
+include 'filter:response'
 include 'model'
 include 'db'
